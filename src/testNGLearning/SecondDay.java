@@ -11,5 +11,7 @@ public class SecondDay {
 		System.out.println("This is second day testng Test");
                 System.out.println("This is GIT Purpose");
 		System.out.println(website);
+                System.out.println("This is GIT1 Purpose");
+                System.out.println("This is GIT2 Purpose");
 	}
 }
