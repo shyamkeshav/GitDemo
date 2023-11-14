@@ -9,6 +9,7 @@ public class SecondDay {
 	@Test(groups= {"smoke"})
 	public void twotest(String website) {
 		System.out.println("This is second day testng Test");
+                System.out.println("This is GIT Purpose");
 		System.out.println(website);
 	}
 }
