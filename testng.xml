@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Loans">
+<parameter name="URL" value="www.google.com"/>
+	<test thread-count="5" name="PersonalLoanTest">
+		<classes>
+			<class name="testNGLearning.FirstDay" >
+			<methods>
+			<include name="onetest"/>
+			</methods>
+			</class>
+			<class name="testNGLearning.SecondDay"></class>
+		</classes>
+	</test> <!-- Test -->
+	<test name="CarLoan">
+		<classes>
+			<class name="testNGLearning.ThirdDay">
+			<methods>
+			<exclude name="Car.*"/><!--this is used to exclude methods starting with Car-->
+			</methods>
+			</class>
+		</classes>
+	</test>
+</suite> <!-- Suite -->
