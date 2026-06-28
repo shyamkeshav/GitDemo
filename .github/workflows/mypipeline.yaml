@@ -18,7 +18,7 @@ jobs:
           num2 = 30
           result = num1+num2
 
-          print(f"summation result is {result})
+          print(f"summation result is {result}")
 
           with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
                print(f"result={result}", file=fh)
