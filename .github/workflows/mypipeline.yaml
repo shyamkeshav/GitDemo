@@ -5,7 +5,7 @@ on :
   workflow_dispatch :
 
 jobs:
-  test jobs for learning:
+  test-jobs-for-learning:
     runs-on : ubuntu-latest
     
     steps:
