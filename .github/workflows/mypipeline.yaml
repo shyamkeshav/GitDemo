@@ -15,4 +15,5 @@ jobs:
     runs-on : ubuntu-latest
     steps:
       - run : print("Hello world!")
-        shell : python      
+        shell : python 
+    depends-on : test-jobs-for-learning         
