@@ -6,7 +6,7 @@ on:
 jobs:
   my_uploads_job:
     runs-on: ubuntu-latest
-    uploads:
+    outputs:
       sum_result : ${{ steps.summation.uploads.result }}
     steps:
       - name: upload_step
