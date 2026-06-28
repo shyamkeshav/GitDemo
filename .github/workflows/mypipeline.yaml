@@ -5,8 +5,8 @@ on:
 
 jobs:
   pipeline_learning:
-    runs_on: ubuntu_latest
+    runs_on : ubuntu-latest
 
     steps:
       - name : checking the flow
-        run: echo "This will be printed on the console"
+        run : echo "This will be printed on the console"
