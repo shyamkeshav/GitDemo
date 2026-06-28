@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: print summation result
         env:
-          RESULT: ${{ needs..my_uploads_job.outputs.result }}
+          RESULT: ${{ needs.my_uploads_job.outputs.result }}
         run: |
           echo "result is ${RESULT}"
 
