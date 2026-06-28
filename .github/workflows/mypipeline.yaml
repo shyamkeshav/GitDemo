@@ -1,39 +1,37 @@
-name : my_workflow
+name : output_jobs_moving
 
-on :
-  workflow_dispatch: 
+on:
+  workflow_dispatch:
 
 jobs:
   job1:
-   runs-on : ubuntu-latest
+   runs-on: ubuntu-latest
    outputs:
-    sum_results : ${{ steps.add.outputs.result }}
+     sum_result : {{ steps.add.outputs.result }}
    steps:
-    - name : my_addition_flow
-      id : add
-      shell: python
-      run : |
-        import os
+     - name: addition_job
+       id : add
+       shell: python
+       run : |
+        import os 
 
-        num1 = 5 
-        num2 = 10
+        num1 =4 
+        num2 =3
 
         result = num1+num2
 
-        print(f"sum of two numbers is {result}")
+        print(f"result of addition is {result}")
         with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-              print(f"result={result}", file=fh)
-  job2:
-    runs-on : ubuntu-latest
-    needs : job1
-    steps:
-      - name: Use output in Bash
-        run: |
-          echo "The sum from job1 is: ${{ needs.job1.outputs.sum_results }}"
+            print(f"result={result}", file=fh)
 
-      - name: Use output in Python
-        shell: python
-        run: |
-          # Safely inject the context value into your script
-          obtained_sum = "${{ needs.job1.outputs.sum_results }}"
-          print(f"Python received the sum: {obtained_sum}")            
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1          
+
+    steps:
+      - name : my_multiplication 
+        result = {{ needs.job1.outputs.sum_result }}
+        run : |
+        echo "${result}"
+
+        
