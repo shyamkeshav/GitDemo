@@ -55,5 +55,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: test-report
+
+      - name: display_file    
         run: |
           cat result.txt  
