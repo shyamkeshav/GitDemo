@@ -1,61 +1,24 @@
-name: my_practise_pipeline
+name: matrix practise pipeline
 
 on:
   workflow_dispatch:
 
 jobs:
-  my_uploads_job:
+  - name: matrix version practise
     runs-on: ubuntu-latest
-    outputs:
-      sum_result: ${{ steps.summation.outputs.result }}
+
+    strategy: 
+      matrix:
+        python-version: ["3.9","3.10","3.11"]  
+
     steps:
-      - name: upload_step
-        id: summation 
-        shell: python
-        run: |
-          import os
-          num1 = 20
-          num2 = 30
-          result = num1+num2
+      - name: checkout repository code
+        uses: actions/checkout@v4
 
-          print(f"summation result is {result}")
-
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-               print(f"result={result}", file=fh)
-
-  my_upload_value_usage:
-    runs-on: ubuntu-latest
-    needs: my_uploads_job
-    steps:
-      - name: print summation result
-        env:
-          RESULT: ${{ needs.my_uploads_job.outputs.sum_result }}
-        run: |
-          echo "result is ${RESULT}"
-
-  my_artifact_upload:
-    runs-on: ubuntu-latest
-    needs: [my_uploads_job,my_upload_value_usage]
-    steps:
-      - name: file_creation_step
-        run: |
-          echo "this is a text result file"> result.txt
-     
-      - name: upload_file_to_artifact
-        uses: actions/upload-artifact@v7
+      - name: setup python
+        uses: actions/setup-python@v5
         with:
-          name: test-report
-          path: result.txt
+          python-version: ${{ matrix.python-version }}   
 
-  my_artifact_download:
-    runs-on: ubuntu-latest
-    needs: my_artifact_upload
-    steps: 
-      - name: my_artifact_download
-        uses: actions/download-artifact@v7
-        with:
-          name: test-report
-
-      - name: display_file    
-        run: |
-          cat result.txt  
+      - name: verify python version
+        run: python --version       
