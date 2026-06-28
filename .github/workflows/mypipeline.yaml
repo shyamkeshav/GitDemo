@@ -7,13 +7,11 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name : my_flow_for_ubuntu
       - run : echo "this is an echo output"
 
   job2:
     runs-on : ubuntu-latest
     steps:
-      - name : my_floe_for_ubuntu_python
       - run : print ("Hello python")
         shell: python
     needs : job1    
