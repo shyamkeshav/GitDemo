@@ -33,5 +33,5 @@ jobs:
         env:
           result : {{ needs.job1.outputs.sum_result }}
         run : |
-        echo "${result}"
+          echo "${result}"
 
