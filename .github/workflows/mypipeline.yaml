@@ -5,7 +5,7 @@ on:
 
 jobs:
   pipeline_learning:
-    runs_on : ubuntu-latest
+    runs-on : ubuntu-latest
 
     steps:
       - name : checking the flow
