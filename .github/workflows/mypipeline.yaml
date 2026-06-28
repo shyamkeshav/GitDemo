@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  matrix version practise
+  matrix version practise:
     runs-on: ubuntu-latest
 
     strategy: 
