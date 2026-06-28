@@ -7,7 +7,7 @@ jobs:
   job1:
    runs-on : ubuntu-latest
    outputs:
-     sum_result = ${{ steps.add.outputs.result }}
+    sum_results = ${{ steps.add.outputs.result }}
    steps:
     - name : my_addition_flow
       id : add
