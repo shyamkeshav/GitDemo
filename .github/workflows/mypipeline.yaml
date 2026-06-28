@@ -30,8 +30,8 @@ jobs:
 
     steps:
       - name : my_multiplication 
-        result = {{ needs.job1.outputs.sum_result }}
+        env:
+          result : {{ needs.job1.outputs.sum_result }}
         run : |
         echo "${result}"
 
-        
