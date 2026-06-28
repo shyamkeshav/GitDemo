@@ -40,8 +40,7 @@ jobs:
       - name: file_creation_step
         run: |
           echo "this is a text result file"> result.txt
-    
-    steps : 
+     
       - name: upload_file_to_artifact
         uses: actions/upload-artifact@v7
         with:
