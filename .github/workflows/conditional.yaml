@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "Running unit tests..."
           # To simulate a test failure, change 'exit 0' to 'exit 1'
-          exit 0 
+          exit 1
 
       # 🔀 CONDITIONAL STEP: Only runs if the previous test step fails
       - name: Send Slack Alert on Failure
