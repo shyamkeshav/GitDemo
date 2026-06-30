@@ -1,0 +1,22 @@
+name: 'custom setup shortcut compostise action'
+description: 'prrpare the directory and display custom headers'
+
+inputs:
+  worker_name:
+    description: 'who is running the step'
+    required: true
+    default: 'Agent'
+
+runs:
+  using: 'composite' # This is the magic key!
+  steps:
+    - name: Create Log Directory
+      shell: bash # CRITICAL: Every step in a composite action MUST declare a shell
+      run: mkdir -p internal_logs
+
+    - name: Print Header Banner
+      shell: bash
+      run: |
+        echo "=========================================="
+        echo "INITIALIZING WORKSPACE FOR: ${{ inputs.worker_name }}"
+        echo "=========================================="    
