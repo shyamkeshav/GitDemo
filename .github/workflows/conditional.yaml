@@ -1,0 +1,36 @@
+name: Conditional Demonstration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # JOB 1: Test Phase
+  test_suite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Application Tests
+        id: run_tests
+        run: |
+          echo "Running unit tests..."
+          # To simulate a test failure, change 'exit 0' to 'exit 1'
+          exit 0 
+
+      # 🔀 CONDITIONAL STEP: Only runs if the previous test step fails
+      - name: Send Slack Alert on Failure
+        if: failure()
+        run: echo "Sending an emergency alert email/Slack message because tests failed!"
+
+  # JOB 2: Production Deployment Phase
+  deploy_production:
+    runs-on: ubuntu-latest
+    needs: test_suite
+    
+    # 🔀 CONDITIONAL JOB: The entire job is skipped unless we are pushing to 'main'
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Production Only Action
+        run: echo "Deploying safe, verified code straight to the production servers!"
